@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tranxquill Shift Checklist</title>
+
+<style>
+body {
+  font-family: system-ui;
+  background: #f7f7f7;
+  padding: 16px;
+}
+.app {
+  max-width: 480px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+h2 {
+  text-align: center;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+li {
+  list-style: none;
+  padding: 10px;
+  background: #eee;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <h2>Tranxquill Shift Checklist</h2>
+
+  <select id="shift">
+    <option value="open">Opening Shift</option>
+    <option value="close">Closing Shift</option>
+  </select>
+
+  <ul id="list"></ul>
+</div>
+
+<script>
+const opening = [
+  "Unlock stall",
+  "Turn on equipment",
+  "Prep ingredients",
+  "Clean tables",
+  "Prepare cashier"
+];
+
+const closing = [
+  "Turn off equipment",
+  "Store ingredients",
+  "Clean kitchen",
+  "Cash count",
+  "Lock stall"
+];
+
+function render() {
+  list.innerHTML = "";
+  const items = shift.value === "open" ? opening : closing;
+  items.forEach(item => {
+    const li = document.createElement("li");
+    li.innerHTML = `<input type="checkbox"> ${item}`;
+    list.appendChild(li);
+  });
+}
+
+shift.onchange = render;
+render();
+</script>
+</body>
+</html>
